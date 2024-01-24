@@ -90,3 +90,26 @@ function render() {
 }
 
 render();
+
+gallery.addEventListener('click', e => {
+    // if (e.target === e.currentTarget) return;
+    if (e.target.tagName !== 'IMG') return;
+    const originalPath = e.target.getAttribute('data-source');
+    const instance = basicLightbox.create(`
+    <img src="${originalPath}" width="1112" height="640">`,
+        {
+      onShow: instance => {
+        document.addEventListener('keydown', closeModal);
+      },
+      onClose: instance => {
+        document.removeEventListener('keydown', closeModal);
+      },
+    },
+  );
+  function closeModal(e) {
+    if (e.code === 'Escape') instance.close();
+    }
+    
+  instance.show();
+})
+gallery.addEventListener('click', addEventListener);
