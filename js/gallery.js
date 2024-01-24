@@ -66,14 +66,27 @@ const images = [
 
 const gallery = document.querySelector('.gallery');
 
-function makeMarkupGalleryListItem(img) {
+function GalleryListItem(img) {
     return `<li class="gallery-item">
-        < a class="gallery-link" href = "${img.original}" >
+        <a class="gallery-link" href = "${img.original}">
             <img
                 class="gallery-image"
                 src="${img.preview}"
                 data-source="${img.original}"
                 alt="${img.description}"
             />
-  </ >
-</li>`; }
+  </a>
+</li>`;
+}
+
+function addListTemplate(images) {
+    const markup = images.map(GalleryListItem).join('');
+    return markup;
+}
+
+function render() {
+    const markup = addListTemplate(images);
+    gallery.innerHTML = markup;
+}
+
+render();
