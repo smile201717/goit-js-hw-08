@@ -68,7 +68,7 @@ const gallery = document.querySelector('.gallery');
 
 function GalleryListItem(img) {
     return `<li class="gallery-item">
-        <a class="gallery-link" href = "${img.original}">
+        <a class="gallery-link" href="${img.original}">
             <img
                 class="gallery-image"
                 src="${img.preview}"
@@ -93,6 +93,7 @@ render();
 
 gallery.addEventListener('click', e => {
     if (e.target === e.currentTarget) return;
+    e.preventDefault();
     // if (e.target.tagName !== 'IMG') return;
     const originalPath = e.target.getAttribute('data-source');
     const instance = basicLightbox.create(`
